@@ -171,7 +171,7 @@ int devtag_lookup(char *buf, size_t bufsize, const char *devname)
 	return devtag_lookup2(buf, bufsize, NULL, 0, devname);
 }
 
-char *devname_get(const char *devname)
+char *devtag_get(const char *devname)
 {
 	char buf[64];
 	buf[0] = 0;
