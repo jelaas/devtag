@@ -1,0 +1,53 @@
+#ifndef DEVTAG_H
+#define DEVTAG_H
+
+#include <sys/types.h>
+
+/*
+ * Lookup 'devtag' among the predefined device selections.
+ * If a matching device is found return the name of this device in buf.
+ *
+ * If 'devtag' is prefixed with "/dev/" then the result is also
+ * prefixed with "/dev/".
+ *
+ * Returns number of devices found or a negative value if an error occured.
+ */
+int devtag_lookup(char *buf, size_t bufsize, const char *devtag);
+
+/* also returns a constant name if supplied in the configuration */
+int devtag_lookup2(char *buf, size_t bufsize, char *constbuf, size_t constsize, const char *devtag);
+
+/*
+ * Simple lookup.
+ * Returns a suitable replacement for devtag.
+ * If no replacement can be determined a 'devtag' will be returned as a duplicated string.
+ */
+char *devtag_get(const char *devtag);
+
+#endif
+
+devtag [-hl] [--ns TAG CMD..] [-c TAG SEL..] [TAG]
+ version 1.0.4
+ -l --list
+      list devnames and lookup info
+ --ns TAG CMD ARG*
+      Runs 'CMD' or bash in a separate mount name space.
+      This name space has its own mount of /dev with a devicenode created
+      according to configuration of the devtag 'TAG'.
+ -c --create TAG SELECTOR+
+      'TAG' is your handle for the device that matches the given selectors.
+      'SELECTOR' is a 'name=value' pair. Suitable selectors is reported by the
+      '--list' option.
+ Without an argument:
+      Scans for and prints device information suitable as arguments for the
+      'devname' program.
+ Without exactly one argument [TAG]:
+      Lookup device node for devtag 'TAG'. Print result on stdout.
+ If invoked as 'devtagns' the program will behave as the '--ns' option was given.
+
+ Magic selectors (maybe not reported by devname-info):
+  dev=<pattern>               device name pattern for selecting device node
+  devname=<nodename>          devname-set will use this constant name for the device node
+  class=<subsystem>           class is usb by default
+
+The devname configurations are saved in '/etc/devtag.d' or '$HOME/.devtag.d'.
