@@ -166,7 +166,7 @@ static struct dev *dev_new()
 	return d;
 }
 
-static int dev_match(const struct devinfo_head *info, const struct devinfo_head *selectors)
+static int usb_dev_match(const struct devinfo_head *info, const struct devinfo_head *selectors)
 {
 	int match=1;
 	struct devinfo *sel, *i;
@@ -207,7 +207,7 @@ static int usb_scan_dev(struct dev_head *result, const struct devinfo_head *sel,
 			dev_info_add(dev, dir, "idProduct");
 			dev_info_add(dev, dir, "idVendor");
 
-			if(dev_match(&dev->info, sel)) {
+			if(usb_dev_match(&dev->info, sel)) {
 				dev->next = result->head;
 				result->head = dev;
 			}
