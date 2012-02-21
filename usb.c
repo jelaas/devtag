@@ -19,7 +19,11 @@
 #include <ctype.h>
 #include <fnmatch.h>
 
+#ifdef DEVTAG_ALLINONE
+#include "devtag-allinone.h"
+#else
 #include "libdevtag.h"
+#endif
 
 static int usb_scan_dir(struct dev_head *result, const struct devinfo_head *sel, const char *dir);
 

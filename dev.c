@@ -7,7 +7,11 @@
  *
  */
 
+#ifdef DEVTAG_ALLINONE
+#include "devtag-allinone.h"
+#else
 #include "libdevtag.h"
+#endif
 
 int devtag_dev_scan(struct dev_head *result, const struct devinfo_head *sel)
 {

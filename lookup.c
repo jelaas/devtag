@@ -16,8 +16,12 @@
 #include <fnmatch.h>
 #include <stdlib.h>
 
+#ifdef DEVTAG_ALLINONE
+#include "devtag-allinone.h"
+#else
 #include "devtag.h"
 #include "libdevtag.h"
+#endif
 
 static int parse(const char *devname, char **class, char **devpattern, char **constdev, struct devinfo_head *sel)
 {

@@ -1,12 +1,17 @@
 CC:=gcc
 CFLAGS+=-Wall -Os -g
 all:	devtag
-devtag:		devtag.o jelopt.o libdevtag.a
+devtag:		devtag.o jelopt.o libdevtag.a devtag-allinone.c devtag-allinone.h
 	$(CC) $(LDFLAGS) -o devtag devtag.o jelopt.o libdevtag.a
 libdevtag.a:	usb.o dev.o lookup.o
 	ar cr libdevtag.a usb.o dev.o lookup.o
+devtag-allinone.c:	usb.c dev.c lookup.c
+	echo "#define DEVTAG_ALLINONE" > devtag-allinone.c
+	cat usb.c dev.c lookup.c >> devtag-allinone.c
+devtag-allinone.h:	devtag.h libdevtag.h
+	cat devtag.h libdevtag.h > devtag-allinone.h
 clean:	
-	rm -f *.o devtag libdevtag.a
+	rm -f *.o devtag libdevtag.a devtag-allinone.c devtag-allinone.h
 install-lib:	libdevtag.a
 	mkdir -p $(DESTDIR)/usr/lib
 	mkdir -p $(DESTDIR)/usr/include
