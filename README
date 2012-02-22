@@ -26,8 +26,9 @@ char *devtag_get(const char *devtag);
 
 #endif
 
+The devname configurations are saved in '/etc/devtag.d' or '$HOME/.devtag.d'.
 devtag [-hl] [--ns TAG CMD..] [-c TAG SEL..] [TAG]
- version 1.0.4
+ version 1.0.6
  -l --list
       list devnames and lookup info
  --ns TAG CMD ARG*
@@ -39,8 +40,8 @@ devtag [-hl] [--ns TAG CMD..] [-c TAG SEL..] [TAG]
       'SELECTOR' is a 'name=value' pair. Suitable selectors is reported by the
       '--list' option.
  Without an argument:
-      Scans for and prints device information suitable as arguments for the
-      'devname' program.
+      Scans for and prints device information suitable as selectors for the
+      --create option.
  Without exactly one argument [TAG]:
       Lookup device node for devtag 'TAG'. Print result on stdout.
  If invoked as 'devtagns' the program will behave as the '--ns' option was given.
