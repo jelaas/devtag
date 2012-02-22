@@ -1,7 +1,7 @@
 #ifndef LIBDEVTAG_H
 #define LIBDEVTAG_H
 
-#define LIBDEVTAG_VERSION "1.0.5"
+#define LIBDEVTAG_VERSION "1.0.6"
 
 struct devname;
 struct devname_head {
