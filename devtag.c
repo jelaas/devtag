@@ -218,12 +218,12 @@ int main(int argc, char **argv)
 		if(getuid()==0) {
 			mask = umask(0);
 			sprintf(fn, "/etc/devtag.d/%s.conf", dev);
-			mkdir("/etc/devtag.d", 1755);
+			mkdir("/etc/devtag.d", 0755);
 			fd = open(fn, O_RDWR|O_CREAT|O_EXCL, 0644);
 			umask(mask);
 		} else {
 			sprintf(fn, "%s/.devtag.d", getenv("HOME"));
-			mkdir(fn, 1755);
+			mkdir(fn, 0755);
 			sprintf(fn, "%s/.devtag.d/%s.conf", getenv("HOME"), dev);
 			fd = open(fn, O_RDWR|O_CREAT|O_EXCL, 0644);
 		}
