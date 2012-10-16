@@ -26,19 +26,20 @@ char *devtag_get(const char *devtag);
 
 #endif
 
-The devname configurations are saved in '/etc/devtag.d' or '$HOME/.devtag.d'.
 devtag [-hl] [--ns TAG CMD..] [-c TAG SEL..] [TAG]
- version 1.0.6
+ version 1.0.7
  -l --list
-      list devnames and lookup info
+      Perform lookup of all tags created (system and user).
+      Tags specified system wide (in /etc/devtag.d) are prefixed with "sys:".
+      Per user tags (in $HOME/.devtag.d) are prefixed with "user:".
  --ns TAG CMD ARG*
       Runs 'CMD' or bash in a separate mount name space.
       This name space has its own mount of /dev with a devicenode created
       according to configuration of the devtag 'TAG'.
  -c --create TAG SELECTOR+
       'TAG' is your handle for the device that matches the given selectors.
-      'SELECTOR' is a 'name=value' pair. Suitable selectors is reported by the
-      '--list' option.
+      'SELECTOR' is a 'name=value' pair. Suitable selectors is reported by invoking
+      devtag without any arguments.
  Without an argument:
       Scans for and prints device information suitable as selectors for the
       --create option.
@@ -46,9 +47,9 @@ devtag [-hl] [--ns TAG CMD..] [-c TAG SEL..] [TAG]
       Lookup device node for devtag 'TAG'. Print result on stdout.
  If invoked as 'devtagns' the program will behave as the '--ns' option was given.
 
- Magic selectors (maybe not reported by devname-info):
+ Magic selectors (maybe not reported by devtag invocation):
   dev=<pattern>               device name pattern for selecting device node
   devname=<nodename>          devname-set will use this constant name for the device node
   class=<subsystem>           class is usb by default
 
-The devname configurations are saved in '/etc/devtag.d' or '$HOME/.devtag.d'.
+The devtag configurations are saved in '/etc/devtag.d' or '$HOME/.devtag.d'.
