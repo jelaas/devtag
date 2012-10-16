@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 		       "      according to configuration of the devtag 'TAG'.\n"
 		       " -c --create TAG SELECTOR+\n"
 		       "      'TAG' is your handle for the device that matches the given selectors.\n"
-		       "      'SELECTOR' is a 'name=value' pair. Suitable selectors is reported by invocing\n"
+		       "      'SELECTOR' is a 'name=value' pair. Suitable selectors is reported by invoking\n"
 		       "      devtag without any arguments.\n"
 		       " Without an argument:\n"
 		       "      Scans for and prints device information suitable as selectors for the\n"
